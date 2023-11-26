@@ -1,0 +1,84 @@
+{% extends 'core/header.html' %}
+{% load static %}
+
+{% block content %}
+            
+        
+            <div class="primary col-lg-8 col-12">
+                <section class="about section">
+                    <div class="section-inner shadow-sm rounded">
+                        <h2 class="heading">About Me</h2>
+                        <div class="content">
+                            <p id="about"></p>
+                        </div><!--//content-->
+
+                    </div><!--//section-inner-->                 
+                </section><!--//section-->
+    
+                <section class="latest section">
+                    <div class="section-inner shadow-sm rounded">
+                        <h2 class="heading">Education</h2>
+                        <div class="content" id="eduaction">
+
+                        </div><!--//content-->
+                        <div class="content">
+                            
+                    </div><!--//content-->
+                    </div><!--//section-inner-->
+                </section><!--//section-->
+
+                <section class="latest section">
+                    <div class="section-inner shadow-sm rounded" id="projects-list">
+                        <h2 class="heading">Latest Projects</h2>
+                        <div class="content" id="projects">    
+            
+                        </div><!--//content-->  
+                        
+                    </div><!--//section-inner-->                
+                </section><!--//section-->
+               
+            </div><!--//primary-->
+
+
+
+            <script src="{% static 'core/js/index_ajax.js' %}"></script>
+
+            <div class="secondary col-lg-4 col-12">
+                        
+                <aside class="info aside section">
+                    <div class="section-inner shadow-sm rounded">
+                        <h2 class="heading">Basics Information</h2>
+                        <div class="content">
+                            <ul class="list-unstyled" id="basics-information">
+                                
+                            </ul>
+                        </div><!--//content-->
+                        
+                    </div><!--//section-inner-->
+                </aside><!--//aside-->
+
+                <aside class="education aside section">
+                    <div class="section-inner shadow-sm rounded">
+                        <h2 class="heading">Latest Courses</h2>
+                        <div class="content" id="certificate">
+                            
+                        </div><!--//content-->
+                        
+                    </div><!--//section-inner-->
+                    
+                </aside><!--//section-->
+                
+            </div><!--//secondary-->
+
+            
+
+            <script src="{% static 'core/js/index_ajax.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+
+        
+

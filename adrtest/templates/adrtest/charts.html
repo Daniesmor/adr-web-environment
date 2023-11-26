@@ -1,0 +1,171 @@
+
+{% extends 'core/header.html' %}
+{% load static %}
+
+
+{% block content %}
+<style>
+    .chart-area {
+        width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+        max-width: 100%; /* Establece una anchura máxima para el contenedor */
+        border: 1px solid #ccc; /* Solo para visualizar el contenedor */
+        overflow: hidden; /* Ocultar contenido que se salga del contenedor */
+    }
+
+    .chart-area canvas {
+        width: 100%; /* El canvas ocupará todo el ancho del contenedor */
+        height: auto; /* El alto se ajustará automáticamente */
+        display: block; /* Asegúrate de que el canvas se muestre como bloque */
+    }
+</style>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Press banca</h1>
+                    <p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme.
+                        The charts below have been customized - for further customization options, please visit the <a
+                            target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js
+                            documentation</a>.</p>
+                    
+                    <div class="dropdown no-arrow mb-4">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown (no arrow)
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item">Sentadilla</a>
+                        <a class="dropdown-item">Press banca</a>
+                        <a class="dropdown-item">Peso muerto</a>
+                        <a class="dropdown-item">Hip thrust</a>
+                        <a class="dropdown-item">Remo tumbado</a>
+                        <a class="dropdown-item">Press militar</a>
+                    </div>
+                    </div>
+
+
+                    <!-- Content Row -->
+                    {% for test in adrtest %}
+                        <h2>Id {{test.id}} - {{test.name}} - {{test.date}}</h2>
+                        <div class="row">
+
+                            <div class="col-xl-8 col-lg-7">
+
+                                <div class="card shadow mb-4" >
+                                    
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">{{test.name}}</h6>
+                                        
+                                    </div>
+                                    
+                                    <div class="card-body">
+    
+                           
+                                     
+                                            <div class="chart-area">
+                                                <canvas id="regressionChart"></canvas>
+                                            </div>
+                                            <hr>
+                                            Styling for the area chart can be found in the
+                                            <code>/js/demo/chart-area-demo.js</code> file.
+                 
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+                            <!-- Donut Chart -->
+                            <div class="col-xl-4 col-lg-5">
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <table id="training_table_{{ test.id }}" class="table table-hover" training_id="{{ test.id }}">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Carga</th>
+                                                    <th scope="col">Velocidad</th>
+                                                    <th scope="col">%RM</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">V0</th>
+                                                    <td class="text-danger">0.00</td>
+                                                    <td class="text-success" id="v0_vel"></td>
+                                                    <td contenteditable="true" id="first_handle">@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">1ª Carga</th>
+                                                    <td contenteditable="true" id="first_weight">{{test.first_weight}}</td>
+                                                    <td contenteditable="true" id="first_vel">{{test.first_vel}}</td>
+                                                    <td contenteditable="true" id="first_handle">@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2ª Carga</th>
+                                                    <td contenteditable="true" id="second_weight">{{test.second_weight}}</td>
+                                                    <td contenteditable="true" id="second_vel">{{test.second_vel}}</td>
+                                                    <td contenteditable="true" id="second_handle">@fat</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3ª Carga</th>
+                                                    <td contenteditable="true" id="third_weight">{{test.third_weight}}</td>
+                                                    <td contenteditable="true" id="third_vel">{{test.third_vel}}</td>
+                                                    <td contenteditable="true" id="second_handle">@fat</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">4ª Carga</th>
+                                                    <td contenteditable="true" id="fourth_weight">{{test.fourth_weight}}</td>
+                                                    <td contenteditable="true" id="fourth_vel">{{test.fourth_vel}}</td>
+                                                    <td contenteditable="true" id="second_handle">@fat</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">5ª Carga</th>
+                                                    <td contenteditable="true" id="fifth_weight">{{test.fifth_weight}}</td>
+                                                    <td contenteditable="true" id="fifth_vel">{{test.fifth_vel}}</td>
+                                                    <td contenteditable="true" id="second_handle">@fat</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">1RM estimado</th>
+                                                    <td class="text-success" id="rm_weight"></td>
+                                                    <td class="text-danger" id="rm_vel"></td>
+                                                    <td contenteditable="true" id="">@fat</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">L0</th>
+                                                    <td class="text-success" id="lo_weight"></td>
+                                                    <td class="text-danger" id="rm_vel">0.00</td>
+                                                    <td id=""></td>
+                                                </tr>
+                                                <!-- Resto de filas de la tabla -->
+                                            </tbody>
+                                        </table>
+                                        <hr>
+                                        Styling for the donut chart can be found in the
+                                        <code>/js/demo/chart-pie-demo.js</code> file.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                    <script>
+                        window.addEventListener('DOMContentLoaded', (event) => {
+                            const chartContainer = document.getElementById('chartContainer');
+                            const canvas = document.getElementById('regressionChart');
+                    
+                            const resizeCanvas = () => {
+                                canvas.width = chartContainer.clientWidth;
+                                canvas.height = chartContainer.clientHeight;
+                                // Aquí puedes volver a renderizar tu gráfica para ajustarla al nuevo tamaño
+                            };
+                    
+                            window.addEventListener('resize', resizeCanvas);
+                            resizeCanvas();
+                        });
+                    </script>
+                    <script src="{% static 'adrtest/js/nuevo3.js' %}"></script>
+                    <script src="{% static 'adrtest/js/adrtest1.js' %}"></script>
+
+{% endblock %}

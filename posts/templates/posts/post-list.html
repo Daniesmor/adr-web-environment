@@ -1,0 +1,32 @@
+
+
+
+{% extends 'core/header.html' %}
+
+
+{% block content %}
+    <section class="latest section">
+        <div class="section-inner shadow-sm rounded">
+            <h2 class="heading">Latest Projects</h2>
+            <div class="content" id="projects">    
+                {% for post in posts %}
+                    <h1></h1>
+                
+                    <div class="item row">
+                        <a class="col-md-4 col-12" href="http://127.0.0.1:8000/posts/{{ post.slug }}" target="_blank">
+                        <img class="img-fluid project-image rounded shadow-sm" src="{{post.miniature}}" alt="project name" />
+                        </a>
+                        <div class="desc col-md-8 col-12">
+                            <h3 class="title"><a href="http://127.0.0.1:8000/posts/{{ post.slug }}" target="_blank">{{ post.title }}</a></h3>
+                            <p class="mb-2">{{ post.content }}</p>
+                            <p><a class="more-link" href="http://127.0.0.1:8000/posts/{{ post.slug }}" target="_blank"><i class="fas fa-external-link-alt"></i>Find out more</a></p>
+                        </div><!--//desc-->                          
+                    </div><!--//item-->
+                {% endfor %}
+            </div><!--//content-->  
+        </div><!--//section-inner-->                
+    </section><!--//section-->
+
+    
+
+{% endblock %}
